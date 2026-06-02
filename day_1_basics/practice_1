@@ -1,0 +1,49 @@
+import pandas as pd
+
+# =========================================================================
+# STEP 1: LOADING THE DATA
+# =========================================================================
+# Q1: Load the 'salesdata.csv' file into a variable named 'sales'.
+# Bonus: Parse the 'Date' column as actual datetime objects.
+# Write your code below:
+sales = pd.read_csv('c:/vs/salesdata.csv', parse_dates=['Date'])
+
+# =========================================================================
+# STEP 2: DATA INSPECTION (The Health Check)
+# =========================================================================
+
+# Q2: Write the attribute to check the exact dimensions (rows, columns).
+print(sales.shape)
+
+# Q3: Write the method to see a detailed summary including missing data and data types.
+print(sales.info())
+
+# Q4: Use a method to see statistical summaries (like mean, min, max) of the numeric data.
+print(sales.describe())
+
+# =========================================================================
+# STEP 3: FILTERING & COUNTING (Finding specific records)
+# =========================================================================
+print("\n--- FILTERING & COUNTING ---")
+
+# Q5: Find the total number of sales transactions made by female customers ('F') 
+# in the 'Clothing' Product_Category.
+
+print(len(sales.loc[(sales['Customer_Gender'] == 'F') & (sales['Product_Category'] == 'Clothing')]))
+
+
+# Q6: How many sales records have an Order_Quantity greater than 20?
+print(len(sales.loc[(sales['Order_Quantity']>20)]))
+
+
+# =========================================================================
+# STEP 4: MATHEMATICAL AGGREGATIONS (Calculating metrics)
+# =========================================================================
+print("\n--- MATHEMATICAL AGGREGATIONS ---")
+
+# Q7: Calculate the average (mean) 'Profit' for all transactions.
+
+print(sales['Profit'].mean()) 
+
+# Q8: Find the maximum (highest) 'Revenue' generated from a single sale in the 'United States'.
+print(sales.loc[sales['Country']=='United States','Revenue'].max())
